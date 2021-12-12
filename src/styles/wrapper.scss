@@ -1,0 +1,392 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper {
+    width:100vw;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: #CCCCFF;
+
+}
+
+.mainScreen {
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top:5vh;
+    width: 70vw;
+    height: fit-content;
+    padding-bottom: 5vh;
+    background-color: white;
+    border-radius: 25px;
+
+    .groupTasks {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top:5vh;
+        padding-bottom:3vh;
+        background-color: #9999FF;
+        box-shadow: 5px 7px 7px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        width:15vw;
+        height: fit-content;
+
+        .allTasksBlock {
+            color:white;
+            margin-top:50px;
+            margin-left:25px;
+            span {
+                margin-left:10px;
+            }
+        }
+        .groupTitle {
+            color:white;
+            font-size: 30px;
+            font-weight: 200;
+            margin-top:50px;
+            margin-left:25px;
+        }
+
+        .groupList {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .freeGroupLogo {
+                margin-top:25px;
+                margin-left:45px;
+                border-radius: 50%;
+                opacity: .5;
+                filter:blur(1px)
+            }
+
+            p {
+                margin-top:15px;
+                margin-left:30px;
+                color:white;
+                font-size: 17px;
+                font-weight: 300;
+                opacity: .7;
+            }
+
+            .groupItem {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                background-color: white;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 15px;
+                margin-left:25px;
+                margin-bottom: 15px;
+                padding:10px;
+
+                .redround {
+                    width:10px;
+                    height: 10px;
+                    background-color: red;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                    margin-left: 1px;
+                }
+
+                .yellowround {
+                    width:10px;
+                    height: 10px;
+                    background-color: rgb(255, 215, 0);
+                    border-radius: 50%;
+                    margin-right: 10px;
+                    margin-left: 1px;
+                }
+
+                .greenround {
+                    width:10px;
+                    height: 10px;
+                    background-color: green;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                    margin-left: 1px;
+                }
+
+
+                i {
+                    margin-top: 1px;
+                    margin-left:10px;
+                    margin-right: 2px;
+                    opacity: .3;
+                }
+                b {
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .addGroup {
+            display: flex;
+            font-size: 14px;
+            font-weight: 600;
+            align-items: center;
+            margin-left: 25px;
+            margin-top:125px;
+            background-color: white;
+            border-radius: 15px;
+            padding:10px;
+            cursor: pointer;
+            border: 1px solid grey;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            -webkit-user-select: none;
+
+            i {
+                margin-right: 10px;
+                opacity: .9;
+            }
+        }
+
+        .addGroup:active {
+            cursor: pointer;
+            transform: scale(0.95);
+            transition: .2s;
+        }
+
+        .windowGroup {
+            margin-left:20px;
+            margin-top:16px;
+            border-radius:10px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border: 1px solid grey;
+            background-color: white;
+            padding:20px;
+            display: flex;
+            flex-direction: column;
+
+            .roundChoice {
+                display: flex;
+                justify-content: flex-start;
+
+                .redround {
+                    cursor:pointer;
+                    margin-top: 13px;
+                    margin-right:7px;
+                    margin-bottom: 13px;
+                    width:25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: red;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    transition: .2s;
+                }
+
+                .redround_active {
+                    cursor:pointer;
+                    margin-top: 13px;
+                    margin-right:7px;
+                    margin-bottom: 13px;
+                    width:25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: red;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    transform:scale(1.15);
+                    transition: .2s;
+                }
+
+
+
+                .yellowround {
+                    cursor:pointer;
+                    margin-top: 13px;
+                    margin-right:7px;
+                    margin-bottom: 13px;
+                    width:25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: rgb(255, 215, 0);
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+                    transition: .2s;
+                }
+
+                .yellowround_active {
+                    cursor:pointer;
+                    margin-top: 13px;
+                    margin-right:7px;
+                    margin-bottom: 13px;
+                    width:25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: rgb(255, 215, 0);
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    transform:scale(1.15);
+                    transition: .2s;
+                }
+
+                .greenround {
+                    cursor:pointer;
+                    margin-top: 13px;
+                    margin-right:7px;
+                    margin-bottom: 13px;
+                    width:25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: green;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    transition: .2s;
+                }
+
+                .greenround_active {
+                    cursor:pointer;
+                    margin-top: 13px;
+                    margin-right:7px;
+                    margin-bottom: 13px;
+                    width:25px;
+                    height: 25px;
+                    border-radius: 50%;
+                    background-color: green;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    transform:scale(1.15);
+                    transition: .2s;
+                }
+
+                
+            }
+            
+
+            input {
+                border:1px solid grey;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                outline: none;
+                width:200px;
+                padding: 5px;
+                border-radius: 8px;
+            }
+            .buttonChoice {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                button {
+                    cursor: pointer;
+                    outline: none;
+                    border:none;
+                    border: 1px solid green;
+                    border-radius: 5px;
+                    color:white;
+                    font-weight: 400;
+                    margin-right: 5px;
+                    background-color: green;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    padding:5px;
+                    transition: .2s;
+                }
+
+                button:active {
+                    transform: scale(0.95);
+                    transition: .2s;
+                }
+                .cancel {
+                    cursor: pointer;
+                    background-color: white;
+                    border: 1px solid black;
+                    font-weight: 500;
+                    opacity: .5;
+                    color:black
+                }
+            }
+        }  
+    }
+
+    .taskScreen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 1vw;
+        margin-top:5vh;
+        background-color: #9999FF;
+        box-shadow: 5px 7px 7px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        width:45vw;
+        height: fit-content;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+
+        .workBlock {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            background-color: white;
+            width: 90%;
+            height: fit-content;
+            padding-bottom: 3vh;
+            border-radius: 15px;
+
+            .taskHeader {
+                margin-left: 50px;
+                margin-top:65px;
+                font-size: 24px;
+                font-weight: 700;
+                color:green
+            }
+
+            .taskList {
+                margin-top:64px;
+                margin-left:50px;
+
+                .taskRound {
+                    width:15px;
+                    height: 15px;
+                    background-color: grey;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+
+                li {
+                    list-style-type: none;
+                    font-size: 20px;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 25px;
+
+                    i {
+                        margin-top:1px;
+                        margin-left: 10px;
+                        opacity: .3;
+                    }
+                }
+                .addGroup {
+            display: flex;
+            font-size: 14px;
+            font-weight: 600;
+            align-items: center;
+            justify-content: center;
+            margin-top:50px;
+            background-color: white;
+            border-radius: 15px;
+            padding:10px;
+            cursor: pointer;
+            border: 1px solid black;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            -webkit-user-select: none;
+            transition: .2s;
+
+            i {
+                margin-right: 10px;
+                opacity: .9;
+            }
+        }
+
+        .addGroup:active {
+            cursor: pointer;
+            transform: scale(0.95);
+            transition: .2s;
+        }
+            }
+        }
+    }
+}
