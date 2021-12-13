@@ -1,14 +1,13 @@
 import React from 'react'
-import { tasks } from '../source'
 import logo from '../styles/outOfTasks.jpg'
 
-function Groups({ store, handleGroupName, clearGroupName, groupName, dispatch }) {
+function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, deleteGroup, groupName, dispatch }) {
 
     const [toggleGroup, setToggleGroup] = React.useState(false);
 
-    const colors = ['redround', 'greenround', 'yellowround']
-    const [activeRound, setActiveRound] = React.useState(null)
-    console.log(activeRound)
+    const colors = ['redround', 'greenround', 'yellowround'];
+    const [activeRound, setActiveRound] = React.useState(null);
+
 
 
     const hideGroupWindow = () => {
@@ -43,23 +42,23 @@ function Groups({ store, handleGroupName, clearGroupName, groupName, dispatch })
                 <p>Группы</p>
             </div>
             <div className='groupList'>
-                {store ? store.items.map((obj) => {
+                {store && store.items.length > 0 ? store.items.map((obj, id) => {
                     return (
-                        <div className='groupItem' key={obj.name}>
+                        <div className='groupItem' key={obj.id} onClick={() => handleCurrentGroup(id)}>
                             <div className={obj.color}></div>
-                            <span>{obj.name}: <b>{obj.tasks.length}</b></span>
-                            <i className="fas fa-times"></i>
+                            <span>{obj.name}: <b>{obj.tasks?.length}</b></span>
+                            <i className="fas fa-times" onClick={() => deleteGroup(id)}></i>
                         </div>
                     )
-                }) : 
-                <div>
-                <img src={logo} width='200' height='200' className='freeGroupLogo'/>
-                <p>Пока вы вольны как ветер..</p>
-                </div>}
+                }) :
+                    <div>
+                        <img src={logo} width='200' height='200' className='freeGroupLogo' />
+                        <p>Вы вольны как ветер..</p>
+                    </div>}
             </div>
             {!toggleGroup ? <div className='addGroup' onClick={() => setToggleGroup(true)}>
                 <i className="fas fa-plus"></i>
-                <div>Добавить группу</div>
+                <div className='groupButton'>Добавить группу</div>
             </div> : <div className='windowGroup'>
                 <input type='text' placeholder='Название группы...' value={groupName} onChange={handleGroupName} />
                 <div className='roundChoice'>
