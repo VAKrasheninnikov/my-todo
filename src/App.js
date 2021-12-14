@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Groups from "./components/Groups";
 import Taskscreen from "./components/Taskscreen";
 import './styles/wrapper.scss';
@@ -10,11 +10,10 @@ function App() {
 
   const [store, dispatch] = React.useReducer(reducer, initialState);
 
-
+  
   const [currentGroup, setCurrentGroup] = React.useState(null);
   const [groupName, setGroupName] = React.useState('');
 
-  console.log(currentGroup)
 
   const handleGroupName = (event) => {
     setGroupName(event.target.value)
@@ -24,20 +23,25 @@ function App() {
     setGroupName('');
   }
 
-  const deleteGroup = (id) => {
-    dispatch({
-      type: 'DELETE_GROUP',
-      payload: id,
-    })
-    setCurrentGroup(null)
-  }
 
   const handleCurrentGroup = (id) => {
     setCurrentGroup(id)
   }
 
-  console.log(store)
+  const deleteGroup = (id) => {
+    dispatch({
+      type: 'DELETE_GROUP',
+      payload: id,
+    });
+  }
 
+  const refTaskName = useRef()
+
+  React.useEffect(()=>{
+    if (store?.items.length-1) {
+      setCurrentGroup(null);
+    }
+  },[store])
 
   return (
     <div className="wrapper">
@@ -55,6 +59,7 @@ function App() {
           store={store}
           dispatch={dispatch}
           currentGroup={currentGroup}
+          refTaskName={refTaskName}
         />
       </div>
     </div>

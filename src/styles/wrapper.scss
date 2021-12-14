@@ -340,6 +340,7 @@
         border-radius: 15px;
         width:45vw;
         height: fit-content;
+        min-height: 452px;
         padding-top: 5vh;
         padding-bottom: 5vh;
 
@@ -424,7 +425,6 @@
                 font-weight: 600;
                 align-items: center;
                 justify-content: center;
-                margin-top:50px;
                 margin-left:50px;
                 background-color: white;
                 border-radius: 15px;
@@ -503,6 +503,12 @@
                     }
                 }
             } 
+
+        }
+        .groupImg {
+            border-radius: 25px;
+            opacity: .7;
+            filter:blur(1px)
         }
     }
 }

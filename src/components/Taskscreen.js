@@ -1,11 +1,10 @@
 import React from 'react'
+import outOfGroup from '../styles/outOfGroup.jpg'
 
-function Taskscreen({ store, dispatch, currentGroup }) {
+function Taskscreen({ store, dispatch, currentGroup, refTaskName, toggleTestBlock }) {
 
   const [toggleTask, setToggleTask] = React.useState(false);
   const [taskText, setTaskText] = React.useState('');
-  console.log(currentGroup)
-  console.log(store)
 
   const handleTastText = (event) => {
     setTaskText(event.target.value)
@@ -33,7 +32,7 @@ function Taskscreen({ store, dispatch, currentGroup }) {
         {store?.items?.map((obj, id) => {
           return (
             <>
-              <div key={id} className={id === currentGroup ? obj.color === null ? "taskHeader" : `taskHeader_${obj.color}` : "hiddenHeader"}>{id === currentGroup ? obj.name : null}</div>
+              <div ref={refTaskName} key={id} className={id === currentGroup ? obj.color === null ? "taskHeader" : `taskHeader_${obj.color}` : "hiddenHeader"}>{id === currentGroup ? obj.name : null}</div>
               <div className={id === currentGroup ? "taskList" : "taskListHidden"}>
                 <ul>
                   {obj?.tasks?.map((el) => {
@@ -63,8 +62,9 @@ function Taskscreen({ store, dispatch, currentGroup }) {
               <button className='cancel' onClick={cancelTask} >Отмена</button>
             </div>
           </div>}
-      </div> : <h1>Выберете группу</h1>}
-
+      </div> : 
+      <span>Выберите группу</span>}
+        
     </div>
   )
 }
