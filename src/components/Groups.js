@@ -44,7 +44,7 @@ function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, de
             <div className='groupList'>
                 {store && store.items.length > 0 ? store.items.map((obj, id) => {
                     return (
-                        <div className='groupItem' key={obj.id} onClick={() => handleCurrentGroup(id)}>
+                        <div key={`${obj.color}_${obj.name}`} className='groupItem' onClick={() => handleCurrentGroup(id)}>
                             <div className={obj.color}></div>
                             <span>{obj.name}: <b>{obj.tasks?.length}</b></span>
                             <i className="fas fa-times" onClick={() => deleteGroup(id)}></i>
@@ -52,7 +52,7 @@ function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, de
                     )
                 }) :
                     <div>
-                        <img src={logo} width='200' height='200' className='freeGroupLogo' />
+                        <img src={logo} width='200' height='200' className='freeGroupLogo' alt='logo'/>
                         <p>Вы вольны как ветер..</p>
                     </div>}
             </div>

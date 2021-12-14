@@ -13,7 +13,7 @@ function App() {
 
   const [currentGroup, setCurrentGroup] = React.useState(null);
   const [groupName, setGroupName] = React.useState('');
- 
+
   console.log(currentGroup)
 
   const handleGroupName = (event) => {
@@ -29,10 +29,10 @@ function App() {
       type: 'DELETE_GROUP',
       payload: id,
     })
+    setCurrentGroup(null)
   }
 
   const handleCurrentGroup = (id) => {
-    
     setCurrentGroup(id)
   }
 
