@@ -1,10 +1,11 @@
 import React from 'react'
-import outOfGroup from '../styles/outOfGroup.jpg'
 
-function Taskscreen({ store, dispatch, currentGroup, refTaskName, toggleTestBlock }) {
+function Taskscreen({ store, dispatch, currentGroup, refTaskName }) {
 
   const [toggleTask, setToggleTask] = React.useState(false);
   const [taskText, setTaskText] = React.useState('');
+  const [toggleRewriteTask, setToggleRewriteTask] = React.useState(false);
+
 
   const handleTastText = (event) => {
     setTaskText(event.target.value)
@@ -12,12 +13,33 @@ function Taskscreen({ store, dispatch, currentGroup, refTaskName, toggleTestBloc
 
   const addTask = () => {
     dispatch({
-      type: 'ADD_TASK',
+      type: taskText === '' ? 'INCORRECT' : 'ADD_TASK',
       payload: currentGroup,
       text: taskText
     })
     setTaskText('');
     setToggleTask(false);
+  }
+
+  const completeTask = (name, id, obj) => {
+    const uniqIdentifier = `${name}_${id}_${obj}`
+    dispatch({
+      type:'COMPLETE_TASK',
+      payload:uniqIdentifier
+    })
+  }
+
+  const rewriteTask = (name) => {
+    setTaskText(name);
+    setToggleTask(true);
+  }
+
+  const deleteTask = (name, id, obj) => {
+    const uniqIdentifier = `${name}_${id}_${obj}`
+    dispatch({
+      type: 'DELETE_TASK',
+      payload:uniqIdentifier
+    })
   }
 
   const cancelTask = () => {
@@ -35,13 +57,13 @@ function Taskscreen({ store, dispatch, currentGroup, refTaskName, toggleTestBloc
               <div ref={refTaskName} key={id} className={id === currentGroup ? obj.color === null ? "taskHeader" : `taskHeader_${obj.color}` : "hiddenHeader"}>{id === currentGroup ? obj.name : null}</div>
               <div className={id === currentGroup ? "taskList" : "taskListHidden"}>
                 <ul>
-                  {obj?.tasks?.map((el) => {
+                  {obj?.tasks?.map((el, id) => {
                     return (
                       <li key={el.name}>
-                        <div className='taskRound'></div>
+                        <div className={el.completed ? 'taskRound_active':'taskRound'} onClick={()=>completeTask(el.name, id, obj.name)}></div>
                         <span >{el.name}</span>
-                        <i className="fas fa-times"></i>
-                        <i className="far fa-edit"></i>
+                        <i className="fas fa-times" onClick={()=>deleteTask(el.name, id, obj.name)}></i>
+                        <i className="far fa-edit" onClick={()=>rewriteTask(el.name)}></i>
                       </li>
                     )
                   })}
@@ -59,11 +81,11 @@ function Taskscreen({ store, dispatch, currentGroup, refTaskName, toggleTestBloc
             <input type='text' placeholder='Название задачи...' value={taskText} onChange={handleTastText} />
             <div className='buttonChoice'>
               <button onClick={addTask}>Добавить</button>
-              <button className='cancel' onClick={cancelTask} >Отмена</button>
+              <button className='cancel' onClick={cancelTask}>Отмена</button>
             </div>
           </div>}
       </div> : 
-      <span>Выберите группу</span>}
+      <span className="altText">Выберите группу...</span>}
         
     </div>
   )

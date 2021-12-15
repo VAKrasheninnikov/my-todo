@@ -9,7 +9,7 @@ function App() {
   const initialState = null;
 
   const [store, dispatch] = React.useReducer(reducer, initialState);
-
+  console.log(store)
   
   const [currentGroup, setCurrentGroup] = React.useState(null);
   const [groupName, setGroupName] = React.useState('');
@@ -37,19 +37,18 @@ function App() {
 
   const refTaskName = useRef()
 
-  React.useEffect(()=>{
-    if (store?.items.length-1) {
+  React.useEffect(()=>{ 
       setCurrentGroup(null);
-    }
-  },[store])
+  },[store?.items.length])
 
   return (
     <div className="wrapper">
       <div className='mainScreen'>
         <Groups
           store={store}
-          dispatch={dispatch}
           groupName={groupName}
+          currentGroup={currentGroup}
+          dispatch={dispatch}
           handleGroupName={handleGroupName}
           clearGroupName={clearGroupName}
           deleteGroup={deleteGroup}
@@ -57,9 +56,9 @@ function App() {
         />
         <Taskscreen
           store={store}
-          dispatch={dispatch}
           currentGroup={currentGroup}
           refTaskName={refTaskName}
+          dispatch={dispatch}
         />
       </div>
     </div>

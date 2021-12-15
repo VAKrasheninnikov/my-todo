@@ -1,7 +1,6 @@
 import React from 'react'
-import logo from '../styles/outOfTasks.jpg'
 
-function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, deleteGroup, groupName, dispatch }) {
+function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, deleteGroup, currentGroup, groupName, dispatch }) {
 
     const [toggleGroup, setToggleGroup] = React.useState(false);
 
@@ -18,7 +17,7 @@ function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, de
 
     const addGroupName = () => {
         dispatch({
-            type: groupName === '' ? 'INCORRECT' : 'ADD_GROUP_NAME',
+            type: groupName === '' ? 'INCORRECT' : 'ADD_GROUP',
             payload: groupName,
             colorPayload: activeRound
         })
@@ -35,7 +34,7 @@ function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, de
     return (
         <div className='groupTasks'>
             <div className='allTasksBlock'>
-                <i className="fas fa-tasks"></i>
+                <i className="fas fa-bars"></i>
                 <span>Все задачи</span>
             </div>
             <div className='groupTitle'>
@@ -45,22 +44,21 @@ function Groups({ store, handleGroupName, handleCurrentGroup, clearGroupName, de
                 {store && store.items.length > 0 ? store.items.map((obj, id) => {
                     return (
                         <div key={`${obj.color}_${obj.name}`} className='groupItem' onClick={() => handleCurrentGroup(id)}>
-                            <div className={obj.color}></div>
-                            <span>{obj.name}: <b>{obj.tasks?.length}</b></span>
+                            <div className={id===currentGroup ? `${obj.color} active` : obj.color}></div>
+                            <span>{obj.name} <b>{obj.tasks?.length}</b></span>
                             <i className="fas fa-times" onClick={() => deleteGroup(id)}></i>
                         </div>
                     )
                 }) :
-                    <div>
-                        <img src={logo} width='200' height='200' className='freeGroupLogo' alt='logo'/>
-                        <p>Вы вольны как ветер..</p>
+                    <div className="freeGroup">
+                        {!toggleGroup?<i className="far fa-arrow-alt-circle-down"></i>:null}
                     </div>}
             </div>
             {!toggleGroup ? <div className='addGroup' onClick={() => setToggleGroup(true)}>
                 <i className="fas fa-plus"></i>
                 <div className='groupButton'>Добавить группу</div>
             </div> : <div className='windowGroup'>
-                <input type='text' placeholder='Название группы...' value={groupName} onChange={handleGroupName} />
+                <input maxLength={22} type='text' placeholder='Название группы...' value={groupName} onChange={handleGroupName} />
                 <div className='roundChoice'>
                     {colors.map((round, index) => {
                         return (

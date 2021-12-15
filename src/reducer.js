@@ -4,7 +4,7 @@ export const reducer = (state, action) => {
 
     switch (action.type) {
 
-        case 'ADD_GROUP_NAME':
+        case 'ADD_GROUP':
 
             const newGroup = state ? [
                 ...state.items,
@@ -45,6 +45,37 @@ export const reducer = (state, action) => {
                     {
                         ...obj,
                         tasks: action.payload === index ? [...obj.tasks, newItem] : obj.tasks
+                    }
+                )
+            })
+        }
+
+        case 'DELETE_TASK':
+            return {
+                ...state,
+                items: state.items.map((obj, index)=>{
+                    return (
+                        {
+                            ...obj,
+                            tasks: obj.tasks.filter((el,index)=>`${el.name}_${index}_${obj.name}`!==action.payload)
+                        }
+                    )
+                })
+            }
+        
+        case 'COMPLETE_TASK': 
+        return {
+            ...state,
+            items: state.items.map((obj, index)=>{
+                return (
+                    {
+                        ...obj,
+                        tasks: obj.tasks.map((el, index)=>{
+                            return ({
+                                ...el,
+                                completed: `${el.name}_${index}_${obj.name}` === action.payload ? !el.completed:el.completed
+                            })
+                        })
                     }
                 )
             })
