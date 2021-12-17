@@ -1,64 +1,148 @@
-* {
+html {
+    -webkit-tap-highlight-color:none;
+    --antd-wave-shadow-color:none;
+}
+
+*{
     padding: 0;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
 }
 
-.wrapper {
-    width:100vw;
-    min-height: 100vh;
-    height: fit-content;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    background-color: #CCCCFF;
+#root {
+    background-color: red;
 }
 
 .mainScreen {
     display:flex;
     justify-content: center;
-    align-items: flex-start;
-    margin-top:5vh;
-    width: 1344px;
-    box-shadow: 2px 7px 7px rgba(0, 0, 0, 0.25);
-    height: fit-content;
-    padding-bottom: 5vh;
+    align-items: stretch;
+    width:100%;
+    height: 100%;
     background-color: white;
-    border-radius: 25px;
+    
 
     .groupTasks {
-        position:relative;
         display: flex;
         align-items: flex-start;
         flex-direction: column;
-        margin-top:36px;
-        padding-bottom:5px;
-        background-color: #9999FF;
-        box-shadow: 5px 7px 7px rgba(0, 0, 0, 0.25);
-        border-radius: 15px;
-        max-width: 360px;
-        min-width:230px;
-        width:fit-content;
-        height: fit-content;
+        background-color: #222226;
+        border-radius: 5px 0px 0px 5px;
+        margin-top:30px;
+        margin-bottom: 30px;
+        min-height: 900px;
+        width:300px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+
+        &.light {
+            background-color: #b9b9b9;
+        }
+
+        .topMenu {
+            margin-top:25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .switchMode {
+            margin-left:25px;
+            margin-top:50px;
+            display: flex;
+            align-items: center;
+
+            .allTaskHeader {
+                color:white;
+                font-weight: 600;
+                &.light {
+                    color:#222226;
+                }
+            }
+            button {
+                margin-left:15px;
+                outline: none;
+                border:none;
+                -webkit-tap-highlight-color:none;
+                --antd-wave-shadow-color:none;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                background-color: transparent;
+                outline: none;
+                box-shadow: none;
+            }
+
+            button:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
+            .ant-click-animating-node {
+                display: none;
+              }
+
+            button::selection {
+                color: transparent;
+                background-color:transparent;
+            }
+
+            .ant-switch {
+                background-color: #CCCCCC;
+
+                &.ant-switch-checked {
+                    background-color: #222226;
+                }
+            }
+        }
 
         .allTasksBlock {
-            color:white;
-            margin-top:50px;
+            display: flex;
+            align-items: center;
+            color:#aaa9a9;
             margin-left:25px;
+            transition: .1s;
+
+            &.light {
+                color:#222226;
+                opacity: .5; 
+                &.active {
+                    opacity: 1;
+                    color:#222226;
+                }
+            }
+
+            &:hover {
+                cursor:pointer;
+            }
+
+            &.active {
+                color:white;
+                margin-left:25px;
+                transition: .1s;
+            }
+
+
+            &:active {
+                transform: scale(0.97);
+            }
+
             span {
                 margin-left:10px;
             }
 
         }
         .groupTitle {
-            color:white;
+            color:#999999;
             font-size: 25px;
             background-color: transparent;
             font-weight: 600;
             margin-top:50px;
             margin-left:25px;
-            p {
-                text-shadow: 1px 1px 2px pink;
+
+            &.light {
+               color:#222226;  
+            }
+
+            button {
+                width:100px;
+                height: 100px;
             }
         }
 
@@ -87,7 +171,7 @@
                 justify-content: flex-start;
                 background-color: white;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 15px;
+                border-radius: 5px;
                 margin-left:25px;
                 margin-right:10px;
                 margin-bottom: 15px;
@@ -96,8 +180,7 @@
 
 
                 b {
-                    text-shadow: 1px 1px 2px pink;
-                    color:#9999FF
+                    color:black
                 }
 
                 span {
@@ -191,17 +274,19 @@
             display: flex;
             font-size: 14px;
             font-weight: 600;
+            margin-left:25px;
             align-items: center;
-            margin: 0 auto;
             margin-bottom: 21px;
             margin-top:30px;
-            background-color: white;
-            border-radius: 15px;
-            padding:10px;
+            background-color: transparent;
+            color:#999999;
+            border-radius: 5px;
             cursor: pointer;
-            border: 1px solid grey;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             -webkit-user-select: none;
+
+            &.light {
+                color:#222226; 
+            }
 
             i {
                 margin-right: 10px;
@@ -215,16 +300,18 @@
 
         .windowGroup {
             padding:10px;
-            margin: auto;
+            margin-left:25px;
             margin-bottom: 15px;
-            width: 180px;
             padding-top:15px;
-            border-radius:10px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border: 1px solid grey;
-            background-color: white;
+            border-radius:5px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+            background-color: rgb(197, 197, 197);
             display: flex;
             flex-direction: column;
+
+            &.light {
+                background-color: #222226;
+            }
 
             .roundChoice {
                 display: flex;
@@ -318,12 +405,11 @@
             
 
             input {
-                border:1px solid grey;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                width:161px;
+                border:none;
+                width:220px;
                 outline: none;
                 padding: 5px;
-                border-radius: 8px;
+                border-radius: 3px;
             }
             .buttonChoice {
                 display: flex;
@@ -352,7 +438,7 @@
                 .cancel {
                     cursor: pointer;
                     background-color: white;
-                    border: 1px solid black;
+                    border: 1px solid #CCCCCC;
                     font-weight: 500;
                     opacity: .5;
                     color:black
@@ -375,17 +461,18 @@
 
             i {
                 position: absolute;
-                top:65%;
-                left: 50%;
-                transform: translate(-50%, -65%);
-                font-size: 50px;
-                box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+                top:330px;
+                font-size: 30px;
+                margin-left:210px;
                 border-radius: 50%;
-                color:white;
+                color:#999999;
                 animation-name: white-arrow;
                 animation-duration: 1500ms;
                 animation-iteration-count: infinite;
                 
+                &.light {
+                    color:#222226;
+                }
             }
 
             @keyframes  white-arrow {
@@ -406,23 +493,26 @@
     .taskScreen {
         display: flex;
         justify-content: center;
-        align-items: center;
-        margin-left: 1vw;
-        margin-top:36px;
-        background-color: #9999FF;
-        box-shadow: 5px 7px 7px rgba(0, 0, 0, 0.25);
-        border-radius: 15px;
-        width:45vw;
-        height: fit-content;
-        min-height: 320px;
-        padding-bottom: 30px;
+        align-items: flex-start;
+        border-radius: 0px 5px 5px 0px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+        background-color: #333336;
+        margin-top:30px;
+        margin-bottom: 30px;
+        width:1236px;
+        min-height: 900px;
+
+        &.light {
+            background-color: #ebebeb;
+        }
 
         .altText {
+            position: absolute;
+            top:440px;
             font-size:25px;
-            color:white;
-            opacity: .5;
+            color:#666666;
+            opacity: .7;
             font-weight: 500;
-            text-shadow: 1px 1px 2px pink;
         }
 
         .workBlock {
@@ -431,7 +521,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
-            background-color: white;
+            background-color: transparent;
             width: 90%;
             height: fit-content;
             min-height: 240px;
@@ -441,7 +531,7 @@
             .taskHeader {
                 margin-left: 50px;
                 margin-top:65px;
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: 700;
                 color:grey;
                 opacity:.8;
@@ -450,7 +540,7 @@
             .taskHeader_yellowround {
                 margin-left: 50px;
                 margin-top:65px;
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: 700;
                 color:rgb(255, 215, 0);
             }
@@ -458,7 +548,7 @@
             .taskHeader_greenround {
                 margin-left: 50px;
                 margin-top:65px;
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: 700;
                 color:green;
             }
@@ -466,32 +556,42 @@
             .taskHeader_redround {
                 margin-left: 50px;
                 margin-top:65px;
-                font-size: 24px;
+                font-size: 30px;
                 font-weight: 700;
                 color:red;
             }
 
             .taskList {
-                margin-top:64px;
+                margin-top:30px;
                 margin-left:50px;
 
                 .taskRound {
-                    cursor: pointer;
                     width:15px;
                     height: 15px;
-                    background-color: grey;
+                    background-color: rgb(243, 243, 243);
                     opacity:.6;
                     border-radius: 50%;
                     margin-right: 10px;
+
+                    &.pointed {
+                        cursor: pointer;
+                    }
+
+                    &.light {
+                        background-color: rgb(114, 110, 110);
+                    }
                 }
 
                 .taskRound_active {
-                    cursor: pointer;
                     width:15px;
                     height: 15px;
                     background-color: #00CC33;
                     border-radius: 50%;
                     margin-right: 10px;
+
+                    &.pointed {
+                        cursor: pointer;
+                    }
                 }
 
                 .fas:hover {
@@ -506,12 +606,35 @@
                     transition: .1s;
                 }
 
+                .taskName {
+                    color:white;
+
+                    &.light {
+                        color:#222226;
+                    }
+                }
+
                 li {
                     list-style-type: none;
                     font-size: 20px;
                     display: flex;
                     align-items: center;
                     margin-bottom: 25px;
+                    color:white;
+
+
+                    span {
+                        margin-right: 15px;
+                        font-weight: 500;
+                    }
+
+                    input {
+                        border:none;
+                        outline: none;
+                        border-radius: 5px;
+                        margin-left:20px;
+                        padding:7px;
+                    }
 
                     i {
                         margin-top:1px;
@@ -532,13 +655,12 @@
                 font-weight: 600;
                 align-items: center;
                 justify-content: center;
-                background-color: white;
+                background-color: transparent;
+                color:#999999;
+                border-radius: 5px;
                 border-radius: 15px;
-                padding:10px;
-                margin-left:60px;
+                margin-left:50px;
                 cursor: pointer;
-                border: 1px solid #bebebe;
-                box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
                 -webkit-user-select: none;
                 
     
@@ -547,7 +669,6 @@
                     opacity: .9;
                 }
             }
-
 
             .windowGroup {
                 margin-left:50px;
@@ -558,6 +679,71 @@
                 padding:20px;
                 display: flex;
                 flex-direction: column;
+
+                &.light {
+                    background-color: #222226;
+                }
+                
+    
+                input {
+                    margin-bottom:15px;
+                    border:1px solid grey;
+                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    outline: none;
+                    width:300px;
+                    padding: 5px;
+                    border-radius: 8px;
+                }
+                
+                .buttonChoice {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+    
+                    button {
+                        cursor: pointer;
+                        outline: none;
+                        border:none;
+                        border: 1px solid green;
+                        border-radius: 5px;
+                        color:white;
+                        font-weight: 400;
+                        margin-right: 5px;
+                        background-color: green;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        padding:5px;
+                        transition: .2s;
+                    }
+    
+                    button:active {
+                        transform: scale(0.95);
+                        transition: .2s;
+                    }
+                    .cancel {
+                        cursor: pointer;
+                        background-color: white;
+                        border: 1px solid black;
+                        font-weight: 500;
+                        opacity: .5;
+                        color:black
+                    }
+                }
+            } 
+
+
+            .windowRewriteGroup {
+                margin-left:50px;
+                border-radius:10px;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border: 1px solid grey;
+                background-color: white;
+                padding:20px;
+                display: flex;
+                flex-direction: column;
+
+                &.light {
+                 background-color: #222226;
+                }
                 
     
                 input {

@@ -4,6 +4,11 @@ export const reducer = (state, action) => {
 
     switch (action.type) {
 
+        case 'SET_STORE':
+            return {
+                items: action.payload.items
+            }
+
         case 'ADD_GROUP':
 
             const newGroup = state ? [
@@ -80,6 +85,24 @@ export const reducer = (state, action) => {
                 )
             })
         }
+
+        case 'REWRITE_TASK':
+            return {
+                ...state,
+                items: state.items.map((obj, index)=>{
+                    return (
+                        {
+                            ...obj,
+                            tasks: obj.tasks.map((el, index)=>{
+                                return ({
+                                    ...el,
+                                    name: `${el.name}_${index}_${obj.name}` === action.identifier ? action.payload:el.name
+                                })
+                            })
+                        }
+                    )
+                })
+            }
 
         default: return state
     }
