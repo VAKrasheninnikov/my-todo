@@ -1,6 +1,9 @@
 import React from 'react'
+import { ThemeContext } from '../context';
 
-function Taskscreen({ store, lightMode }) {
+function Taskscreen({ store }) {
+
+  const {lightMode} = React.useContext(ThemeContext)
 
   return (
     <div className={lightMode ? 'taskScreen light' : 'taskScreen' }>

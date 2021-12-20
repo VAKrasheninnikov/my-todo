@@ -1,9 +1,12 @@
 import React from 'react';
 import { Switch } from 'antd';
+import { ThemeContext } from '../context';
 
 function Groups({ store, handleGroupName, handleCurrentGroup,
     clearGroupName, deleteGroup, currentGroup, setCurrentGroup, groupName,
-    toggleAllTasks, lightMode, setToggleAllTasks, setLightMode, dispatch }) {
+    toggleAllTasks, setToggleAllTasks, dispatch }) {
+
+    const {lightMode, setLightMode} = React.useContext(ThemeContext)
 
     const [toggleGroup, setToggleGroup] = React.useState(false);
     const colors = ['redround', 'greenround', 'yellowround'];

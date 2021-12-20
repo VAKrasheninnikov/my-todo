@@ -4,7 +4,8 @@ import Taskscreen from "./components/Taskscreen";
 import AllTaskscreen from "./components/AllTasksScreen"
 import './styles/wrapper.scss';
 import 'antd/dist/antd.css';
-import { reducer } from './reducer'
+import { reducer } from './reducer';
+import { ThemeContext } from './context';
 
 function App() {
 
@@ -13,16 +14,17 @@ function App() {
   const initialState = JSON.parse(stringified) ? JSON.parse(stringified) : null;
 
   const [store, dispatch] = React.useReducer(reducer, initialState);
-  const [lightMode, setLightMode] = React.useState(JSON.parse(actualMode) ===! null || undefined ? JSON.parse(actualMode) : false)
+  const [lightMode, setLightMode] = React.useState(JSON.parse(actualMode) === ! null || undefined ? JSON.parse(actualMode) : false)
   const [toggleAllTasks, setToggleAllTasks] = React.useState(false);
   const [currentGroup, setCurrentGroup] = React.useState(null);
   const [groupName, setGroupName] = React.useState('');
 
-  React.useEffect(()=> {
+  console.log(ThemeContext)
+  React.useEffect(() => {
     localStorage.setItem('store', JSON.stringify(store))
   }, [store])
 
-  React.useEffect(()=> {
+  React.useEffect(() => {
     localStorage.setItem('lightMode', JSON.stringify(lightMode))
   }, [lightMode])
 
@@ -52,35 +54,33 @@ function App() {
   }, [store?.items.length])
 
   return (
-    <div className='mainScreen'>
-      <Groups
-        store={store}
-        groupName={groupName}
-        toggleAllTasks={toggleAllTasks}
-        currentGroup={currentGroup}
-        lightMode={lightMode}
-        dispatch={dispatch}
-        setLightMode={setLightMode}
-        setToggleAllTasks={setToggleAllTasks}
-        setCurrentGroup={setCurrentGroup}
-        handleGroupName={handleGroupName}
-        clearGroupName={clearGroupName}
-        deleteGroup={deleteGroup}
-        handleCurrentGroup={handleCurrentGroup}
-      />
-      {toggleAllTasks ?
-        <AllTaskscreen
+    <ThemeContext.Provider value={{lightMode, setLightMode}}>
+      <div className='mainScreen'>
+        <Groups
           store={store}
-          lightMode={lightMode}
-        /> :
-        <Taskscreen
-          store={store}
-          lightMode={lightMode}
-          currentGroup={currentGroup}
+          groupName={groupName}
           toggleAllTasks={toggleAllTasks}
+          currentGroup={currentGroup}
           dispatch={dispatch}
-        />}
-    </div>
+          setToggleAllTasks={setToggleAllTasks}
+          setCurrentGroup={setCurrentGroup}
+          handleGroupName={handleGroupName}
+          clearGroupName={clearGroupName}
+          deleteGroup={deleteGroup}
+          handleCurrentGroup={handleCurrentGroup}
+        />
+        {toggleAllTasks ?
+          <AllTaskscreen
+            store={store}
+          /> :
+          <Taskscreen
+            store={store}
+            currentGroup={currentGroup}
+            toggleAllTasks={toggleAllTasks}
+            dispatch={dispatch}
+          />}
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

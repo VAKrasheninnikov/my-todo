@@ -1,6 +1,9 @@
 import React from 'react'
+import { ThemeContext } from '../context';
 
-function Taskscreen({ store, dispatch, currentGroup, lightMode }) {
+function Taskscreen({ store, dispatch, currentGroup }) {
+
+  const {lightMode} = React.useContext(ThemeContext)
 
   const [toggleTask, setToggleTask] = React.useState(false);
   const [taskText, setTaskText] = React.useState('');
